@@ -1,20 +1,31 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
+import * as dotenv from "dotenv";
 dotenv.config();
+import cors from "cors";
+import express from "express";
+import UserRoutes from "./src/routes/user.routes.js";
+import CurrencyRoutes from "./src/routes/currency.routes.js";
 
-const app = express();
+const initApp = () => {
+  const app = express();
 
-app.use(cors());
+  app.use(cors());
 
-app.use(express.json());
+  app.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
+  app.use(express.urlencoded({ extended: true }));
 
-require("./src/routes/user.routes")(app);
+  UserRoutes(app);
 
-// set port, listen for requests
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+  CurrencyRoutes(app);
+
+  // set port, listen for requests
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(process.env.TOKEN_SECRET);
+    console.log(`Server is running on port ${PORT}.`);
+  });
+};
+
+setTimeout(() => {
+  initApp();
+}, 500);

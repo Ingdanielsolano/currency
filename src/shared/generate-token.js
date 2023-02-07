@@ -1,9 +1,5 @@
-const jwt = require('jsonwebtoken');
+import jwt from "jsonwebtoken";
 
-function generateAccessToken(user) {
+export function generateAccessToken(user) {
   return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: "1800s" });
 }
-
-module.exports = {
-  generateAccessToken,
-};

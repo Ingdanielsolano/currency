@@ -1,9 +1,9 @@
-const { Client } = require("pg");
-const { ENVIRONMENTS } = require("../config/envs");
+import pg from "pg";
+import { ENVIRONMENTS } from "../config/envs.js";
 
-  exports.client = () => {
-  const client = new Client({
-    database:  ENVIRONMENTS.DB_NAME,
+const client = () => {
+  const client = new pg.Client({
+    database: ENVIRONMENTS.DB_NAME,
     host: ENVIRONMENTS.DB_URL,
     port: ENVIRONMENTS.DB_PORT,
     user: ENVIRONMENTS.DB_USER,
@@ -12,3 +12,5 @@ const { ENVIRONMENTS } = require("../config/envs");
 
   return client;
 };
+
+export default client;

@@ -1,6 +1,6 @@
-const { client } = require("./");
+import client from "./index.js";
 
-exports.UserModel = {
+export const UserModel = {
   findByEmail: async (email) => {
     const newClient = await client();
     await newClient.connect();

@@ -1,13 +1,15 @@
-const { authenticateToken } = require("../shared/validate-token");
+import authenticateToken from "../shared/validate-token.js";
+import UsersRoutes from "../controllers/users/controller.js";
+import express from "express";
 
-module.exports = (app) => {
-  const users = require("../controllers/users/controller");
+const userRoutes = (app) => {
+  const router = express.Router();
 
-  const router = require("express").Router();
+  router.post("/auth", UsersRoutes.validate);
 
-  router.post("/auth", users.validate);
-
-  router.get("/", authenticateToken, users.getInfo);
+  router.get("/", authenticateToken, UsersRoutes.getInfo);
 
   app.use("/v1", router);
 };
+
+export default userRoutes;

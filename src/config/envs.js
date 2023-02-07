@@ -1,4 +1,7 @@
-exports.ENVIRONMENTS = {
+import * as dotenv from "dotenv";
+dotenv.config();
+
+export const ENVIRONMENTS = {
   TOKEN_SECRET: process.env.TOKEN_SECRET,
   DB_URL: process.env.DB_URL,
   DB_PORT: process.env.DB_PORT,
