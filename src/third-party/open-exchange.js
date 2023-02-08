@@ -14,6 +14,13 @@ const OpenExchangeApi = {
 
     return latest.rates[keyFound];
   },
+  getAll: async () => {
+    const latest = await fetch(
+      "https://openexchangerates.org/api/latest.json?app_id=e0557811a5ea469d933b6dc408a9222e"
+    ).then((response) => response.json());
+
+    return latest.rates;
+  },
 };
 
 export default OpenExchangeApi;

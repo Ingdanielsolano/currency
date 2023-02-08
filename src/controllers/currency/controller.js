@@ -22,10 +22,16 @@ export const getDollarValue = async (req, res) => {
 
       return {
         currency: currency,
-        value:  amount * dollarSource,
+        value: amount * dollarSource,
       };
     })
   );
 
-  res.send({ daga: currencies });
+  res.send({ data: currencies });
+};
+
+export const getCurrencies = async (req, res) => {
+  const currencies = await OpenExchangeApi.getAll();
+
+  res.send({ data: currencies });
 };
